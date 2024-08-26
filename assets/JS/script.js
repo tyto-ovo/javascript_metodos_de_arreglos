@@ -28,21 +28,20 @@ btnAgregar.addEventListener("click", () => {
   tareas.push(nuevaTarea);
   tareaInput.value = "";
   renderTareas();
-  cambiarCheck();
-  cantidadCompletados();
 });
 
-/* compa.addEventListener("click", () => {
-  const x = this.id;
-  cambiarCheck(x);
-}); */
+compa.forEach((y) => {
+  y.addEventListener("change", () => {
+    const x = this.id;
+    cambiarCheck(x);
+  });
+});
 
 function cambiarCheck(id) {
   const x = tareas.find((e) => e.id == id);
   if (tareas) {
     tareas.completado = !tareas.completado;
     renderTareas();
-    cantidadCompletados();
   }
 }
 
@@ -51,8 +50,6 @@ function borrar(id) {
   tareas.splice(index, 1);
 
   renderTareas();
-  cambiarCheck();
-  cantidadCompletados();
 }
 
 function renderTareas() {
@@ -70,6 +67,7 @@ function renderTareas() {
   }
   totalT.innerHTML = cont;
   listaAgregados.innerHTML = html;
+  cantidadCompletados();
 }
 
 function cantidadCompletados() {
