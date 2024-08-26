@@ -9,10 +9,11 @@ const tareaInput = document.querySelector("#nuevaTarea");
 const btnAgregar = document.querySelector("#agregarTarea");
 const totalT = document.getElementById("total");
 const real = document.getElementById("realizadas");
-let comp = document.querySelectorAll("input:checked");
+const compa = document.querySelectorAll("input:checked");
 
 renderTareas();
 cantidadCompletados();
+
 document.querySelectorAll("input[name=completado]").forEach((i) => {
   i.onclick = function () {
     cantidadCompletados();
@@ -27,27 +28,44 @@ btnAgregar.addEventListener("click", () => {
   tareas.push(nuevaTarea);
   tareaInput.value = "";
   renderTareas();
+  cambiarCheck();
   cantidadCompletados();
 });
+
+/* compa.addEventListener("click", () => {
+  const x = this.id;
+  cambiarCheck(x);
+}); */
+
+function cambiarCheck(id) {
+  const x = tareas.find((e) => e.id == id);
+  if (tareas) {
+    tareas.completado = !tareas.completado;
+    renderTareas();
+    cantidadCompletados();
+  }
+}
 
 function borrar(id) {
   const index = tareas.findIndex((elemento) => elemento.id == id);
   tareas.splice(index, 1);
 
   renderTareas();
+  cambiarCheck();
   cantidadCompletados();
 }
+
 function renderTareas() {
   let html = ``;
   let cont = 0;
   for (t of tareas) {
     cont += 1;
-    html += `<li> ${t.id} ${t.descripcion} `;
+    html += `<li id="${t.id}"> ${t.id} ${t.descripcion}`;
 
     if (t.completado == false) {
-      html += `<input  type="checkbox" name="completado" /> <button onclick="borrar(${t.id})" class="close"><i class="fa-solid fa-x"></i></button> </li>`;
+      html += `<input  type="checkbox" onclick="cambiarCheck()" name="completado" /> <button onclick="borrar(${t.id})" class="close"><i class="fa-solid fa-x"></i></button> </li>`;
     } else {
-      html += `<input  type="checkbox" name="completado" checked /> <button  onclick="borrar(${t.id})" class="close"><i class="fa-solid fa-x"></i></button> </li>`;
+      html += `<input  type="checkbox" onclick="cambiarCheck()" name="completado" checked= ${t.completado} /> <button  onclick="borrar(${t.id})" class="close"><i class="fa-solid fa-x"></i></button> </li>`;
     }
   }
   totalT.innerHTML = cont;
@@ -57,20 +75,11 @@ function renderTareas() {
 function cantidadCompletados() {
   document.getElementById("realizadas").textContent =
     document.querySelectorAll("input:checked").length;
+  tareas.completado = true;
 
-  document.querySelectorAll("input[name=completado]").forEach((i) => {
-    i.onclick = function () {
-      cantidadCompletados();
-    };
-    /*    tareas[i].completado = true; */
-  });
-}
-
-/* function comprobar() {
-  cantidadCompletados();
   document.querySelectorAll("input[name=completado]").forEach((i) => {
     i.onclick = function () {
       cantidadCompletados();
     };
   });
-} */
+}
