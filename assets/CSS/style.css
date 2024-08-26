@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+/* color verde #178347 */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #efeeef;
+}
+head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+hr {
+  margin: 1em auto;
+  height: 2px;
+  background-color: #c4c5c5;
+  border: none;
+}
+.cabecera {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0px;
+  margin: 20px;
+  gap: 50px;
+}
+.ingresos {
+  margin: 20px;
+}
+.lista {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 5em;
+}
+#agregarTarea {
+  border: 1px solid #178347;
+  background-color: #178347;
+  padding: 6px 16px 6px 16px;
+  border-radius: 8px;
+  gap: 8px;
+  color: white;
+}
+#nuevaTarea {
+  padding: 6px 16px 6px 16px;
+  border-radius: 8px;
+  /*   box-shadow: none;
+  text-shadow: none; */
+  border: 1px solid black;
+}
+.pequeñoTitulo {
+  margin-left: 5px;
+}
+.lista li {
+  list-style-type: none;
+}
+.close {
+  cursor: pointer;
+  margin-left: 5px;
+  position: absolute;
+}
+
